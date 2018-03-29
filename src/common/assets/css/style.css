@@ -1,0 +1,45 @@
+/*修改组件样式公有化*/
+.ds-manageList-box {
+    min-height: 410px;
+    padding-left: 20px;
+    padding-top: 10px;
+}
+.ds-widget-box{
+
+    /* border: none !important;
+    float: left;
+    width: 100%;
+    padding-bottom: 2px; */
+}
+.box-right{
+    border-right: 1px solid #CDCDCD!important;
+    min-height: 447px;
+}
+/*刷新会变黑色*/
+.el-table__empty-block {
+    background: #fff;
+}
+.ivu-row{
+    border: 1px solid #ccc;
+}
+.el-table{
+    width: 96% !important;
+    margin: 2%;
+}
+
+.ds-selectw li{
+    display: inline-block;
+    height: 36px;
+    line-height: 36px;
+    margin: 5px 8px 5px 3px;
+    padding: 0 12px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size: 12px;
+    vertical-align: middle;
+    opacity: 1;
+    overflow: hidden;
+    cursor: pointer;
+    background: #f7f7f7;
+}
+

@@ -1,0 +1,22 @@
+th {
+  font-weight: normal;
+  text-align: -internal-center;
+}
+
+.ivu-table-header {
+  background: skyblue!important;
+}
+
+.ivu-table-row-highlight td {
+  background: #9fbfd4!important;
+  color:#495060!important;
+}
+
+.ivu-table th {
+  /* background-color: #d2eef1; */
+}
+
+.ivu-table-stripe .ivu-table-body tr:nth-child(2n) td,
+.ivu-table-stripe .ivu-table-fixed-body tr:nth-child(2n) td {
+  /* background-color: #e4eff3; */
+}

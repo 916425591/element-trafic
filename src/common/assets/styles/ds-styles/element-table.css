@@ -1,0 +1,44 @@
+/*表格公有化*/
+.el-table .warning-row {
+    background: #9fbfd4;
+    cursor: pointer;
+}
+.el-table .success-row {
+    background: #fff;
+    cursor: pointer;
+}
+.el-form-item__content{
+    height: 40px;
+}
+.el-table--enable-row-hover .el-table__body tr:hover>td {
+    background-color: #9fbfd4;
+}
+.el-table__expanded-cell:hover{
+  background-color: #9fbfd4;
+}
+.el-table--striped .el-table__body tr.el-table__row--striped.current-row td,
+.el-table__body tr.current-row>td,
+.el-table__body tr.hover-row.current-row>td,
+.el-table__body tr.hover-row.el-table__row--striped.current-row>td,
+.el-table__body tr.hover-row.el-table__row--striped>td,
+.el-table__body tr.hover-row>td {
+  background-color: #9fbfd4;
+}
+.el-table--enable-row-hover .el-table__body tr:hover>td {
+  background-color: #9fbfd4;
+}
+/*全局弹窗修改*/
+.el-dialog__header {
+    padding: 15px 20px 15px 20px;
+    background: #115aa5;
+    color: #fff;
+}
+.el-dialog__header,.el-dialog__title{
+    color: #fff;
+}
+/*.el-dialog__body{*/
+    /*float: left;*/
+/*}*/
+.dialg-body .el-dialog__body{
+    float: inherit;
+}

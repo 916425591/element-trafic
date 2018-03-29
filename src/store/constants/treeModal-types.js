@@ -1,0 +1,1 @@
+export const SAVE_DATA = 'DEMO_SAVE_DATA' //获取资源类型数据

@@ -1,0 +1,1 @@
+export const TEAM_SAVE_DETAIL = 'TEAM_SAVE_DETAIL' //获取详情数据

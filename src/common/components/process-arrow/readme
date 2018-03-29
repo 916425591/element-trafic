@@ -1,0 +1,36 @@
+
+<tempalte>
+  <processArrow></processArrow>
+</tempalte>
+<script>
+import processArrow from '@/common/components/process-arrow/index'
+import Cookies from 'js-cookie';
+export default {
+  components: {
+    processArrow
+  },
+  computed: {
+    planIdInfo() {
+      return this.$store.state.userCode.planId //planID预案ID
+    },
+    userCode() {
+      return Cookies.get('userCode') //userCode
+    },
+    url() {
+      return this.$store.state.userCode.url //url
+    }
+  },
+  created() {
+    this.getProcessArrow({
+      userCode: this.userCode,
+      url: this.url + '/plan/planProcessNode/findProcessNode',
+      planId: this.planIdInfo
+    })
+  },
+  methods: {
+    ...mapActions([
+      'getProcessArrow'//流程图方法
+    ])
+  }
+}
+</script>

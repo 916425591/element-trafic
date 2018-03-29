@@ -1,0 +1,15 @@
+export const CLASSIFY_TYPE_LIST = 'CLASSIFY_TYPE_LIST'; // 法律法规类型列表
+export const CHANGE_STATUS = 'CHANGE_STATUS';// 改变弹出框显示隐藏的状态
+export const CHANGE_TYPE_STATUS = 'CHANGE_TYPE_STATUS';// 设置类型弹框状态
+export const TABLE_LIST = 'TABLE_LIST';// 表格列表
+export const DELETE_INFO = 'DELETE_INFO';// 删除信息
+export const SET_INFO = 'SET_INFO';// 设置信息
+export const EDIT_CLASSIFY = 'EDIT_CLASSIFY';// 编辑保存
+export const ADD_CLASSIFY = 'ADD_CLASSIFY';// 新增保存
+export const SET_ADD_EDIT_STATUS = 'SET_ADD_EDIT_STATUS';// 设置新增编辑状态
+export const SET_CLASSIFY_TYPE_ID = 'SET_CLASSIFY_TYPE_ID';// 设置类型ID
+export const SET_QUERY_CONDITIONS = 'SET_QUERY_CONDITIONS';// 设置参数
+export const DATE_FORMAT = 'DATE_FORMAT';// 时间格式化
+export const SET_FILE_TYPE = 'SET_FILE_TYPE';// 设置文件类型
+export const SET_FILE_TYPE_INFO = 'SET_FILE_TYPE_INFO';// 设置文件类型ID
+export const SAVE_LAW_TREE_NODE='SAVE_LAW_TREE_NODE';//保存法律法规类型

@@ -1,0 +1,1 @@
+export const SAVE_CHEMICAL_NODE='SAVE_CHEMICAL_NODE';//保存化学品类型

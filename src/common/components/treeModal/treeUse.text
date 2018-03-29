@@ -1,0 +1,338 @@
+
+<tree v-if="treeMode" @tree-close-Modal="treeModalClose" @tree-save-Modal="treeModalSave"></tree>
+
+import { mapActions } from 'vuex'
+import tree from '@/common/components/treeModal/tree'
+import Cookies from 'js-cookie';
+ export default {
+	 components: {
+			tree
+	},
+	 methods: {
+		 ...mapActions([
+				'saveDemoData',
+		]),
+	 }
+ }
+
+
+
+
+//get请求方法数据
+let TreeInfo = {
+        title: '预案类型',//标题
+        treeMultiple: false,//是否多选
+        additional: 'addPlanType',//类型，用于返回判断
+        request: 'get',//请求方法
+				queryInfo: {
+					userCode: Cookies.get('userCode')
+				},
+        url: 'http://192.168.0.29:8080/plan/content/queryPlanType'
+      }
+      this.saveDemoData(TreeInfo);
+      this.treeMode = true;
+
+//post请求方法数据格式
+	let TreeInfo = {
+			title: '设置成员单位',
+			treeMultiple: false,
+			additional: 'settingMember',
+			request: 'post',
+			queryInfo: {
+					userCode: Cookies.get('userCode')
+			},
+			url: this.getUrl+'/platform/public/queryOrgTree4New'
+	}
+	this.saveDemoData(TreeInfo);
+	this.treeMode = true;
+
+//父组件绑定关闭方法
+@tree-close-Modal="treeModalClose"
+
+//父组件绑定保存方法
+@tree-save-Modal="treeModalSave"
+
+数据组装封装
+
+后台数据范例：
+var resourceList = [
+				{
+			      "id": 1,
+			      "name": "物资",
+			      "code": "001",
+			      "type": 1,
+			      "memo": "004",
+			      "parentNode": 1,
+			      "queryCode": "DS1.",
+			      "parent": null,
+			      "createTime": null,
+			      "updateTime": null,
+			      "valid": 1,
+			      "deleted": null
+			    },
+			    {
+			      "id": 2,
+			      "name": "装备",
+			      "code": "002",
+			      "type": 2,
+			      "memo": "005",
+			      "parentNode": 1,
+			      "queryCode": "DS2.",
+			      "parent": null,
+			      "createTime": null,
+			      "updateTime": null,
+			      "valid": 1,
+			      "deleted": null
+			    },
+			    {
+			      "id": 3,
+			      "name": "避险场所",
+			      "code": "003",
+			      "type": 3,
+			      "memo": "006",
+			      "parentNode": 1,
+			      "queryCode": "DS3.",
+			      "parent": null,
+			      "createTime": null,
+			      "updateTime": null,
+			      "valid": 1,
+			      "deleted": null
+			    },
+			    {
+			      "id": 4,
+			      "name": "处置队伍",
+			      "code": "004",
+			      "type": 4,
+			      "memo": "007",
+			      "parentNode": 1,
+			      "queryCode": "DS4.",
+			      "parent": null,
+			      "createTime": null,
+			      "updateTime": null,
+			      "valid": 1,
+			      "deleted": null
+			    },
+			    {
+			      "id": 5,
+			      "name": "车辆",
+			      "code": "005",
+			      "type": 5,
+			      "memo": "008",
+			      "parentNode": 1,
+			      "queryCode": "DS5.",
+			      "parent": null,
+			      "createTime": null,
+			      "updateTime": null,
+			      "valid": 1,
+			      "deleted": null
+			    },
+				{
+			      "id": 13,
+			      "name": "22专家",
+			      "code": "ssss",
+			      "type": null,
+			      "memo": null,
+			      "parentNode": null,
+			      "queryCode": "DS2.12.13.",
+			      "parent": {
+			        "id": 6,
+			        "name": "专家",
+			        "code": "ssss",
+			        "type": null,
+			        "memo": null,
+			        "parentNode": null,
+			        "queryCode": "DS2.12."
+			        },
+			        "createTime": null,
+			        "updateTime": "2017-12-22 14:08:50",
+			        "valid": 1,
+			        "deleted": 0
+			    },{
+			      "id": 131,
+			      "name": "221专家",
+			      "code": "ssss",
+			      "type": null,
+			      "memo": null,
+			      "parentNode": null,
+			      "queryCode": "DS2.12.13.",
+			      "parent": {
+			        "id": 13,
+			        "name": "22专家",
+			        "code": "ssss",
+			        "type": null,
+			        "memo": null,
+			        "parentNode": null,
+			        "queryCode": "DS2.12."
+			        },
+			        "createTime": null,
+			        "updateTime": "2017-12-22 14:08:50",
+			        "valid": 1,
+			        "deleted": 0
+			    },{
+			      "id": 1311,
+			      "name": "2211专家",
+			      "code": "ssss",
+			      "type": null,
+			      "memo": null,
+			      "parentNode": null,
+			      "queryCode": "DS2.12.13.",
+			      "parent": {
+			        "id": 131,
+			        "name": "221专家",
+			        "code": "ssss",
+			        "type": null,
+			        "memo": null,
+			        "parentNode": null,
+			        "queryCode": "DS2.12."
+			        },
+			        "createTime": null,
+			        "updateTime": "2017-12-22 14:08:50",
+			        "valid": 1,
+			        "deleted": 0
+			    },{
+			      "id": 13111,
+			      "name": "22111专家",
+			      "code": "ssss",
+			      "type": null,
+			      "memo": null,
+			      "parentNode": null,
+			      "queryCode": "DS2.12.13.",
+			      "parent": {
+			        "id": 1311,
+			        "name": "2211专家",
+			        "code": "ssss",
+			        "type": null,
+			        "memo": null,
+			        "parentNode": null,
+			        "queryCode": "DS2.12."
+			        },
+			        "createTime": null,
+			        "updateTime": "2017-12-22 14:08:50",
+			        "valid": 1,
+			        "deleted": 0
+			    },
+				{
+			      "id": 4,
+			      "name": "处置队伍",
+			      "code": "004",
+			      "type": 4,
+			      "memo": "007",
+			      "parentNode": 1,
+			      "queryCode": "DS4.",
+			      "parent": null,
+			      "createTime": null,
+			      "updateTime": null,
+			      "valid": 1,
+			      "deleted": null
+			    },
+			    {
+			      "id": 2,
+			      "name": "天然气抢险队",
+			      "code": "string",
+			      "type": null,
+			      "memo": null,
+			      "parentNode": null,
+			      "queryCode": "DS6.14.",
+			      "parent": {
+			        "id": 4,
+			        "name": "处置队伍",
+			        "code": "006",
+			        "type": 6,
+			        "memo": "010",
+			        "parentNode": 1,
+			        "queryCode": "DS6.",
+			        "parent": null,
+			        "createTime": null,
+			        "updateTime": "2017-12-21 14:10:59",
+			        "valid": 1,
+			        "deleted": 0
+			      },
+			      "createTime": null,
+			      "updateTime": null,
+			      "valid": 1,
+			      "deleted": null
+			    },
+			    {
+			      "id": 14,
+			      "name": "天然气抢险一队",
+			      "code": "string",
+			      "type": null,
+			      "memo": null,
+			      "parentNode": null,
+			      "queryCode": "DS6.14.",
+			      "parent": {
+			        "id": 2,
+			        "name": "天然气抢险队",
+			        "code": "006",
+			        "type": 6,
+			        "memo": "010",
+			        "parentNode": 1,
+			        "queryCode": "DS6.",
+			        "parent": null,
+			        "createTime": null,
+			        "updateTime": "2017-12-21 14:10:59",
+			        "valid": 1,
+			        "deleted": 0
+			      },
+			      "createTime": null,
+			      "updateTime": null,
+			      "valid": 1,
+			      "deleted": null
+}
+];
+
+function AssemblyArray(resourceList) {
+  var resource = [];
+  for(let i = 0; i < resourceList.length; i++) {
+    var typeParent = resourceList[i].parent;
+    if(!typeParent) {
+      resource.push({
+        id: resourceList[i].id,
+        title: resourceList[i].name,
+        expand: true,
+        children: []
+      });
+    } else {
+      var parent = findParent(typeParent, resource);
+      if(!parent) {
+        parent = {
+          id: typeParent.id,
+          title: typeParent.name,
+          expand: true,
+          children: []
+        };
+        resource.push(parent);
+      }
+      if(!parent.children) {
+        parent.children = [];
+      }
+      var type = {
+        id: resourceList[i].id,
+        title: resourceList[i].name,
+        expand: true
+      };
+      parent.children.push(type);
+    }
+  }
+  return resource;
+
+  function findParent(typeParent, list) {
+    //递归查询组装数据
+    var parent = null;
+    for(let index = 0; index < list.length; index++) {
+      if(typeParent.id == list[index].id) {
+        parent = list[index];
+        return parent;
+      } else {
+        var children = list[index].children;
+        if(children) {
+          parent = findParent(typeParent, children);
+          if(parent) {
+            return parent;
+          }
+        }
+      }
+    }
+    return parent;
+  }
+}

@@ -1,0 +1,4 @@
+/* 修改iview表单label文字大小 */
+.ivu-form .ivu-form-item-label {
+  font-size: 14px!important;
+}

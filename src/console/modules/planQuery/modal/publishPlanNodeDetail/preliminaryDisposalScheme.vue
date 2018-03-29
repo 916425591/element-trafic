@@ -1,0 +1,170 @@
+<template>
+    <div :data-height="tableHeight">
+        <div class="ds-widget-box" style="margin-left: 5px;">
+            <div class="ds-widget-title">
+                <span class="ds-title-icon"></span>
+                <h2>先期处置方案</h2>
+                <span style="float:right;margin-right:10px;">
+        </span>
+            </div>
+            <Card shadow>
+                <textarea class='tinymce-textarea' id="tinymceEditer"></textarea>
+            </Card>
+            <Spin fix v-if="spinShow">
+                <Icon type="load-c" size=18 class="demo-spin-icon-load"></Icon>
+                <div>加载中...</div>
+            </Spin>
+        </div>
+    </div>
+</template>
+
+<script>
+    import tinymce from 'tinymce';
+    import axios from 'axios'
+    import { mapActions } from 'vuex'
+    import Cookies from 'js-cookie';
+    export default {
+        data () {
+            return {
+                spinShow: true,
+                idStatus: null,
+                height: ''
+            };
+        },
+        computed: {
+            contentNodeId() {
+                return this.$store.state.userCode.contentNodeId //nodeId
+            },
+            planIdInfo() {
+                return this.$store.state.userCode.planId //planID
+            },
+            userCode() {
+                return Cookies.get('userCode') //userCode
+            },
+            url() {
+                return this.$store.state.userCode.url //url
+            },
+            tableHeight() {
+                const height = this.$store.state.heightTable.tableInfo.tableHeight
+                this.height = (parseInt(height) - 173) + 'px' /*定义好的父框体高度*/
+                return this.height.height
+            }
+        },
+        created() {
+            const h = window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight
+            this.setHeightContent(h)
+            this.tableHeightMessage(75) /* xx 为除去title以及面包屑和本身之外 其它元素所占用的高度*/
+            this.getPreliminaryContent()
+        },
+        methods: {
+            ...mapActions([
+                'tableHeightMessage',/*将其它元素所占用的高度传入到vuex中 进行换算 返回相应高度及每页显示条数*/
+                'setHeightContent'/*将获取到的可读高度 存放到VUEX中进行换算*/
+            ]),
+            getPreliminaryContent() {
+                const url = this.url + '/plan/disposal/getFBPlanDisposal4Node'
+                const params = {
+                    userCode: this.userCode,
+                    nodeId: this.contentNodeId
+                }
+                axios({
+                    method: 'get',
+                    url: url,
+                    params: params
+                }).then(
+                    response => {
+                        if(response.data.code === 200) {
+                            const res = response.data.data
+                            if(res.content) {
+                                localStorage.preliminary = res.content
+                                this.idStatus = res.id
+                            } else {
+                                return
+                            }
+                        }
+                    }
+                ).catch(
+                    error => {
+
+                    }
+                )
+            },
+            savepreliminary() {
+                const url = this.url + '/plan/disposal/savePlanDisposal'
+                const params = {
+                    id: this.idStatus,
+                    content: localStorage.preliminary,
+                    node: {
+                        id: this.contentNodeId
+                    },
+                    plan: {
+                        id: this.planIdInfo
+                    },
+                    userCode: this.userCode
+                }
+                axios({
+                    method: 'post',
+                    url: url,
+                    data: params
+                }).then(
+                    response => {
+                        if(response.data.code === 200) {
+                            this.$Message.info('保存成功')
+                            this.idStatus = response.data.data.id
+                        } else {
+                            this.$Message.error(response.data.message)
+                        }
+                    }
+                ).catch(
+                    error => {
+
+                    }
+                )
+            },
+            init () {
+                this.$nextTick(() => {
+                    let vm = this;
+                    let height = this.height
+                    tinymce.init({
+                        selector: '#tinymceEditer',
+                        branding: false,
+                        elementpath: false,
+                        height: height,
+                        language: 'zh_CN.GB2312',
+                        plugins: [
+                            'advlist autolink lists link image charmap print preview imagetools',
+                        ],
+                        toolbar1: 'undo redo | forecolor backcolor bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image emoticons media codesample',
+                        autosave_interval: '20s',
+                        image_advtab: true,
+                        images_upload_url: '',
+                        table_default_styles: {
+                            width: '100%',
+                            borderCollapse: 'collapse'
+                        },
+                        setup: function (editor) {
+                            editor.on('init', function (e) {
+                                vm.spinShow = false;
+                                if (localStorage.preliminary) {
+                                    tinymce.get('tinymceEditer').setContent(localStorage.preliminary);
+                                }
+                            });
+                            editor.on('keydown', function (e) {
+                                localStorage.preliminary = tinymce.get('tinymceEditer').getContent();
+                            });
+                        }
+                    });
+                });
+            }
+        },
+        mounted () {
+            this.init();
+        },
+        destroyed () {
+            tinymce.get('tinymceEditer').destroy();
+        }
+    };
+</script>
+
+<style>
+</style>

@@ -1,0 +1,27 @@
+<!-- 带查询功能list -->
+<table-list v-if="tableListModal" @table-search-close="closeSearchModal" @table-search-save="saveSearchModal"></table-list>
+import tableList from '@/common/components/tableSearchModal/tableSearchModal'
+import Cookies from 'js-cookie';
+components: {
+    tableList
+}
+
+...mapActions([
+    'saveTableData'
+]),
+
+const tableInfo = {
+    title: '',
+    multiple: false,
+    url: '',
+    name: '',
+    type: 'executor',
+    request: '',
+    searchShow = true;
+    queryInfo: {
+        userCode: Cookies.get('userCode'),
+        name: ''
+    }
+}
+this.saveTableData(tableInfo);
+this.tableListModal = true;

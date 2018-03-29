@@ -1,0 +1,8 @@
+.ivu-page-item-active {
+  background-color: #286090;
+  border-color: #204d74;
+}
+
+.ivu-page-item:hover {
+  border-color: #204d74;
+}

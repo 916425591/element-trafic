@@ -1,0 +1,4 @@
+export const RESOURCE_TYPE_LIST = 'RESOURCE_TYPE_LIST' //获取资源类型数据
+export const RESOURCE_TYPE_DETAIL = 'RESOURCE_TYPE_DETAIL' //demo test
+export const DEMO_SAVE_DATA = 'DEMO_SAVE_DATA' //demo save
+export const GET_RESOURCE_RESOURCE_TYPE = 'GET_RESOURCE_RESOURCE_TYPE'

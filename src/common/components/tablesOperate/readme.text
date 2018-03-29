@@ -1,0 +1,6 @@
+申明组件引入
+import tablesOperate from '@/common/components/tablesOperate/tablesOperate.vue';
+
+components: {
+  tablesOperate
+},

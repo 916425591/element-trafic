@@ -1,0 +1,1 @@
+export const SAVE_TABLE_DATA = 'SAVE_TABLE_DATA' //获取资源类型数据
